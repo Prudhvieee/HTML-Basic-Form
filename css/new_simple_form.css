@@ -46,3 +46,9 @@ error-output{
     font-style:italic;
     color:red;
 }
+@media print{
+    body {
+      background-color: purple;
+    }
+
+  }
