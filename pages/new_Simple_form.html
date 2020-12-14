@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/new_simple_form.css">
+    <title>Basic Form</title>
+</head>
+<body>
+    <form>
+        <header class="headerContainer">
+            <h1>HTML 5 INPUT FORM</h1>
+        </header>
+        <div>
+            <label for="text">Text input type for Name:</label>
+            <input type="text" id="text" name="text" required></input>
+            <error-output class="text-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="pwd">Password input type :</label>
+            <input type="password" id="pwd" name="pwd" required></input>
+            <error-output class="pwd-error" for="pwd"></error-output>
+        </div>
+        <div>
+            <label for="email">Email input type</label>
+            <input type="email" id="email" name="email" required></input>
+            <error-output class="email-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="url">URL input type:</label>
+            <input type="url" id="url" name="url" required></input>
+        </div>
+        <div>
+            <label for="tel">Tel input type: </label>
+            <input type="tel" id="tel" name="tel" required></input>
+            <error-output class="tel-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="search">Search input type: </label>
+            <input type="search" id="search" name="search" required></input>
+        </div>
+        <div class="nativeDatePicker">
+            <label for="party">Choose a date:</label>
+            <input type="date" id="party" name="bday" required>
+            <span class="validity"></span>
+        </div>
+        <div>
+            <label for="salary">choose your Salary: </label>
+            <input type="range" id="salary" name="salary" min="300000" max="500000" step="100" value="400000">
+            <output class="salary-output" for="salary">400000</output>
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+    <script>
+        const nameInput = document.querySelector("#text");
+        const errorText = document.querySelector(".text-error");
+        // To validate name using regex
+        text.addEventListener('input', function () {
+            let nameRegex = RegExp("^[A-Z]{1}[A-Za-z]{2,}$")
+            if (nameRegex.test(nameInput.value) || nameInput.value == "")
+                errorText.textContent = "";
+            else
+                errorText.textContent = "Invalid Name"
+        });
+        // To validate password
+        const password = document.querySelector("#pwd");
+        const errorPwd = document.querySelector(".pwd-error");
+        password.addEventListener('input', function () {
+            let pwdRegex = RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=[\\w]*[\\W][\\w]*$)(?=.{8,}$).*$");
+            if (pwdRegex.test(password.value) || password.value == "")
+                errorPwd.textContent = "";
+            else
+                errorPwd.textContent = "Invalid Password";
+        });
+        // To validate Email
+        const emailInput = document.querySelector("#email");
+        const errorEmail = document.querySelector(".email-error");
+        emailInput.addEventListener('input', function () {
+            let emailRegex = RegExp("^[0-9a-zA-Z]{1,}([._+-][0-9a-zA-Z]{0,})*[@][0-9a-zA-Z]{1,}.[a-zA-Z]{2,3}(.[a-zA-Z]{2,3})?$");
+            if (emailRegex.test(emailInput.value) || emailInput.value == "")
+                errorEmail.textContent = "";
+            else
+                errorEmail.textContent = "Invalid email"
+        });
+        // To validate Phn Number
+        const mobileInput = document.querySelector("#tel");
+        const errorMobile = document.querySelector(".tel-error");
+        mobileInput.addEventListener('input', function () {
+            let mobileRegex = RegExp("^[1-9]{1}[0-9]{9}$");
+            if (mobileRegex.test(mobileInput.value) || mobileInput.value == "")
+                errorMobile.textContent = "";
+            else
+                errorMobile.textContent = "Invalid number"
+        });
+        // To take salary input
+        const salary = document.querySelector('#salary');
+        const output = document.querySelector('.salary-output');
+        output.textContent = salary.value;
+        salary.addEventListener('input', function () {
+            output.textContent = salary.value;
+        });
+    </script>
+</body>
+</html>
